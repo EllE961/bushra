@@ -13,7 +13,7 @@ function structuredData(site: string): Plugin {
       name: "بُشرى",
       alternateName: "Bushra",
       url: `${site}/`,
-      description: "أداة مجانية لتصميم شهادات تهنئة لحفظ القرآن الكريم وتلاوته، بثمانية تصاميم، تُنزَّل صورةً جاهزة للمشاركة أو الطباعة.",
+      description: "أداة مجانية لتصميم شهادات تهنئة لحفظ القرآن الكريم وتلاوته، بتصاميم متنوعة، تُنزَّل صورةً جاهزة للمشاركة أو الطباعة.",
       applicationCategory: "DesignApplication",
       operatingSystem: "Any",
       inLanguage: "ar",

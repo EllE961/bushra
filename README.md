@@ -6,22 +6,22 @@
 
 ![typescript](https://img.shields.io/badge/typescript-7.0-1f1d1b?style=flat-square&labelColor=0d0c0b)
 ![react](https://img.shields.io/badge/react-19%20%C2%B7%20vite%208-d95926?style=flat-square&labelColor=0d0c0b)
-![designs](https://img.shields.io/badge/designs-8-3987e5?style=flat-square&labelColor=0d0c0b)
+![designs](https://img.shields.io/badge/designs-14-3987e5?style=flat-square&labelColor=0d0c0b)
 ![license](https://img.shields.io/badge/license-MIT-1f1d1b?style=flat-square&labelColor=0d0c0b)
 
-<img src="docs/assets/hero.png" alt="The eight certificate designs, all for the same student, Maryam bint Saeed Al Harthi, passing memorisation of Surat An-Nisa: watercolor flowers, an emerald and gold geometric border, an illuminated mushaf page, a night sky with lanterns, an olive wreath, Moroccan zellige tiles, a minimal sheet with a gold seal, and a pastel one with bunting for children" width="100%">
+<img src="docs/assets/hero.png" alt="The fourteen certificate designs, all for the same student, Maryam bint Saeed Al Harthi, passing memorisation of Surat An-Nisa: watercolor flowers, an emerald and gold geometric border, a paper-cut mihrab arch, a night sky with lanterns, the Omani coast with a dhow, an illuminated mushaf page, watercolor lavender, black marble with Art Deco gold, a desert at sunset, an olive wreath, Moroccan zellige tiles, a minimal sheet with a gold seal, a pastel one with bunting for children, and a space one for children" width="100%">
 
 </div>
 
 I built Bushra (بُشرى, "glad tidings") for Quran teachers, who send parents a congratulation image whenever a
 student passes a surah and usually make each one by hand. You type the student's name, choose memorisation (حفظ) or
-recitation (تلاوة), pick the surah and one of eight designs, and download the image. The preview updates as you type,
+recitation (تلاوة), pick the surah and one of fourteen designs, and download the image. The preview updates as you type,
 and the download is the same picture at full size. It runs at
 [bushra-quran.vercel.app](https://bushra-quran.vercel.app), with no account and no server behind it.
 
 ## Highlights
 
-- Eight designs, all drawn in code with no image files: watercolor flowers, a watercolor olive wreath, an emerald and gold geometric border, an illuminated mushaf page, a night sky with lanterns, Moroccan zellige, a minimal sheet with a gold seal, and a cheerful one for children's circles.
+- Fourteen designs, all drawn in code with no image files: watercolor flowers, lavender and an olive wreath; an emerald and gold geometric border, an illuminated mushaf page, Moroccan zellige, a paper-cut mihrab arch and black marble with Art Deco gold; a night sky with lanterns, a desert at sunset and the Omani coast with a dhow; a minimal sheet with a gold seal; and two for children's circles, one pastel and one in space.
 - The wording follows the student. "نبارك للطالبة ... اجتيازها" becomes "نبارك للطالب ... اجتيازه", and the closing prayer changes its pronouns with it (`src/lib/wording.ts`).
 - A surah, a juz', the whole Quran, or any text you type. Search folds the spellings people mix up (أ/ا, ة/ه, ى/ي), and surah numbers work too.
 - The verse at the top matches the achievement: Al-Muzzammil 73:4 for recitation, Al-Qamar 54:17 for memorisation, copied verbatim from the Tanzil Uthmani text.
@@ -77,9 +77,10 @@ Time to finished image on my desktop, at the 2560 px export size:
 
 | Design | Time |
 |---|---|
-| ورد (watercolor flowers) | about 0.75 s |
+| ورد (watercolor flowers) | 0.75 to 0.9 s |
 | زيتون (watercolor olive wreath) | about 0.25 s |
-| The other six | 75 to 115 ms |
+| خزامى (watercolor lavender) | about 0.23 s |
+| The other eleven | 75 to 180 ms |
 
 The app is about 175 KB of gzipped JavaScript, plus fonts. The offline cache holds 1.4 MB, most of it the
 Arabic font files.
@@ -92,7 +93,7 @@ pnpm dev        # http://localhost:5173
 pnpm build      # type-check and build into dist/
 ```
 
-In development, `/?render=<design>` draws one certificate at full size, and `/?contact` draws all eight side by side.
+In development, `/?render=<design>` draws one certificate at full size, and `/?contact` draws every design side by side.
 Both accept `name`, `g=m`, `kind=hifz`, `surah`, `school`, `date`, `noverse` and `format=a4`.
 
 `VITE_SITE_URL` in `.env.production` is the public address used for the canonical link, the link preview image and
@@ -109,7 +110,7 @@ src/
     background.ts         worker pool and artwork cache
     paint.worker.ts       paints artwork off the main thread
     templates/            one file per design
-    kit/                  watercolor, ornaments, geometry, paper, sky, tazhib
+    kit/                  watercolor, ornaments, geometry, paper, sky, tazhib, landscape, deco, space
   lib/
     wording.ts            what the certificate says, by gender and kind
     quran.ts              surah and juz' names, search folding

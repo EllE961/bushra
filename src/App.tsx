@@ -15,6 +15,11 @@ import { fileName, haptic, isTouch } from "./lib/share";
 import { usePrefs } from "./lib/store";
 import { hijriToday, student, targetLabel } from "./lib/wording";
 
+/** Arabic counting: the noun is plural from 3 to 10 and singular accusative from 11 up. */
+function countDesigns(n: number) {
+  return n >= 3 && n <= 10 ? `${n} تصاميم` : `${n} تصميمًا`;
+}
+
 function targetNumber(t: Target) {
   return t.type === "surah" || t.type === "juz" ? t.n : null;
 }
@@ -262,7 +267,7 @@ export function App() {
               </motion.button>
             </Card>
 
-            <Card title="التصميم" delay={0.15} aside={<span className="text-[13px] text-ink-3">{TEMPLATES.length} تصاميم</span>}>
+            <Card title="التصميم" delay={0.15} aside={<span className="text-[13px] text-ink-3">{countDesigns(TEMPLATES.length)}</span>}>
               <TemplatePicker value={template} onChange={(id) => set("template", id)} data={data} format={prefs.format} placeholder={placeholder} />
             </Card>
 

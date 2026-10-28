@@ -22,8 +22,19 @@ const Thumb = memo(function Thumb({
   const canvas = useRef<HTMLCanvasElement>(null);
   const shown = useRef(false);
   const [visible, setVisible] = useState(false);
+  const [near, setNear] = useState(false);
+
+  // Paint a design only once it scrolls near the view: a phone shows two or three of fourteen.
   useEffect(() => {
-    if (!cssWidth) return;
+    const el = box.current;
+    if (!el || near) return;
+    const io = new IntersectionObserver(([e]) => e.isIntersecting && setNear(true), { rootMargin: "0px 240px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [box, near]);
+
+  useEffect(() => {
+    if (!cssWidth || !near) return;
     // The first paint is immediate; later ones wait for a pause in typing.
     const t = setTimeout(
       () => {
@@ -39,7 +50,7 @@ const Thumb = memo(function Thumb({
       shown.current ? 260 : 0,
     );
     return () => clearTimeout(t);
-  }, [id, data, format, placeholder, cssWidth]);
+  }, [id, data, format, placeholder, cssWidth, near]);
 
   const sheet = SHEET[format];
   return (
