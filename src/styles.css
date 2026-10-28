@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --font-ruqaa: "Aref Ruqaa", serif;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-sunken: var(--sunken);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-danger: var(--danger);
+
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  --bg: #f3eee5;
+  --surface: #fffcf7;
+  --sunken: #ebe4d8;
+  --line: #e4dccd;
+  --line-strong: #d3c8b5;
+  --ink: #1d1914;
+  --ink-2: #574f44;
+  --ink-3: #8a8174;
+  --accent: #0f5a48;
+  --accent-2: #0b4638;
+  --accent-ink: #fbf7ef;
+  --accent-soft: #dcebe4;
+  --gold: #b0843a;
+  --gold-soft: #f3e6cc;
+  --danger: #b4443a;
+  --shadow: 32 24 12;
+  --highlight: rgb(255 255 255 / 0.6);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12110f;
+    --surface: #1b1a17;
+    --sunken: #0d0c0b;
+    --line: #2b2925;
+    --line-strong: #3a3732;
+    --ink: #f1ebe1;
+    --ink-2: #bdb3a4;
+    --ink-3: #847b6e;
+    --accent: #3faf8b;
+    --accent-2: #5cc4a1;
+    --accent-ink: #08130f;
+    --accent-soft: #15302a;
+    --gold: #d6ab5c;
+    --gold-soft: #2f2616;
+    --danger: #e0786d;
+    --shadow: 0 0 0;
+    --highlight: rgb(255 255 255 / 0.04);
+    color-scheme: dark;
+  }
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+    -webkit-tap-highlight-color: transparent;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button,
+  input {
+    font: inherit;
+    color: inherit;
+  }
+
+  button {
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--gold-soft);
+  }
+}
+
+.shadow-card {
+  box-shadow:
+    0 1px 0 var(--highlight) inset,
+    0 1px 2px rgb(var(--shadow) / 0.06),
+    0 8px 24px -12px rgb(var(--shadow) / 0.18);
+}
+
+.shadow-lift {
+  box-shadow:
+    0 2px 4px rgb(var(--shadow) / 0.06),
+    0 24px 48px -20px rgb(var(--shadow) / 0.35);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.35), transparent);
+  animation: shimmer 1.4s var(--ease-out-quint) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shimmer::after {
+    animation: none;
+  }
+}

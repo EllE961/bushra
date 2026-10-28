@@ -1,0 +1,17 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "bushra-iota.vercel.app" }],
+      "destination": "https://bushra-quran.vercel.app/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "bushra-elle961s-projects.vercel.app" }],
+      "destination": "https://bushra-quran.vercel.app/$1",
+      "permanent": true
+    }
+  ]
+}
